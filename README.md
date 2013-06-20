@@ -54,7 +54,7 @@ Configure your infrastructure :
 ```java
 @Configuration
 @EnableMyBatisRepositories
-@MapperScan("com.acme..repository")
+@MapperScan("com.acme.repository")
 public class ApplicationConfig {
 
 	@Bean
@@ -92,7 +92,7 @@ public class User {
 }
 ```
 
-Create a repository interface in `com.acme..repository`:
+Create a repository interface in `com.acme.repository`:
 
 ```java
 public interface CustomerRepository extends MyBatisRepository<Customer, Integer> {
@@ -143,6 +143,8 @@ public class UserRepositoryIntegrationTest {
   }
 }
 ```
+
+See the test classes for more.
 
 
 
