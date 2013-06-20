@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.springframework.data.mybatis.repository.CustomerRepository">
+
+	<resultMap id="customerResultMap" type="Customer">
+		<id property="id" column="id" />
+		<result property="firstName" column="first_name" />
+		<result property="lastName" column="last_name" />
+		<result property="emailAddress.value" column="email_adress" />
+		<collection property="addresses" ofType="Address">
+			<id property="id" column="address_id" />
+			<result property="street" column="address_street" />
+			<result property="city" column="address_city" />
+			<result property="country" column="address_country" />
+		</collection>
+	</resultMap>
+
+
+	<select id="findOne" resultMap="customerResultMap" parameterType="int">
+		SELECT customer.id id,
+		customer.first_name first_name,
+		customer.last_name last_name,
+		customer.email_address email_adress,
+		address.id address_id,
+		address.street address_street,
+		address.city
+		address_city,
+		address.country address_country
+		FROM
+		customer customer, address address
+		WHERE customer.id = address.customer_id
+		AND customer.id = #{id}
+	</select>
+	
+	<select id="findAll" resultMap="customerResultMap">
+		SELECT customer.id id,
+		customer.first_name first_name,
+		customer.last_name last_name,
+		customer.email_address email_adress,
+		address.id address_id,
+		address.street address_street,
+		address.city
+		address_city,
+		address.country address_country
+		FROM
+		customer customer, address address
+		WHERE customer.id = address.customer_id
+	</select>
+	
+	<select id="findByFirstName" resultMap="customerResultMap" parameterType="string">
+		SELECT customer.id id,
+		customer.first_name first_name,
+		customer.last_name last_name,
+		customer.email_address email_adress,
+		address.id address_id,
+		address.street address_street,
+		address.city
+		address_city,
+		address.country address_country
+		FROM
+		customer customer, address address
+		WHERE customer.id = address.customer_id
+		AND customer.first_name = #{firstName}
+	</select>
+
+</mapper>
