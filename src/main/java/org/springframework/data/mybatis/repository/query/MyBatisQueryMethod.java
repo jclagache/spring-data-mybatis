@@ -14,6 +14,7 @@ public class MyBatisQueryMethod extends QueryMethod {
 	public MyBatisQueryMethod(Method method, RepositoryMetadata metadata) {
 		super(method, metadata);
 		Assert.notNull(method, "Method must not be null!");
+		Assert.notNull(metadata, "RepositoryMetadata must not be null!");
 		this.method = method;
 		mapperInterface = metadata.getRepositoryInterface();
 	}

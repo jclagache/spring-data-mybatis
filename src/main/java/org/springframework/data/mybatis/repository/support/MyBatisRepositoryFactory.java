@@ -34,9 +34,10 @@ public class MyBatisRepositoryFactory extends RepositoryFactorySupport {
 		return MyBatisRepository.class;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	protected Object getTargetRepository(RepositoryMetadata repositoryMetadata) {	
-		return sessionTemplate.getMapper(repositoryMetadata.getRepositoryInterface());		
+		return new SimpleMyBatisRepository(sessionTemplate, repositoryMetadata.getRepositoryInterface().getCanonicalName());
 	}
 	
 	

@@ -6,26 +6,15 @@ The primary goal of the [Spring Data](http://www.springsource.org/spring-data) p
 This project define a `MyBatisRepository` base interface  : 
 
 ```java
-public interface MyBatisRepository<T, ID extends Serializable> extends PagingAndSortingRepository<T, ID> {	
-	/**
-	 * Retrieves an entity by its id.
-	 * 
-	 * @param id must not be {@literal null}.
-	 * @return the entity with the given id or {@literal null} if none found
-	 * @throws IllegalArgumentException if {@code id} is {@literal null}
-	 */
+public interface MyBatisRepository<T, ID extends Serializable> extends Repository<T, ID> {	
 	T findOne(ID id);
-	
-	/**
-	 * Returns all instances of the type.
-	 * 
-	 * @return all entities
-	 */
 	List<T> findAll();
+	boolean exists(ID id);
+	long count();
 }
 ```
 The only goal for now of this module is to make your MyBatis mappers created by [MyBatis-Spring](http://mybatis.github.io/spring/) : 
- * potentially expose this 2 methods by default
+ * implement these four methods by only providing one `select` statement
  * registered as Spring Data repositories
 
 
@@ -105,27 +94,28 @@ Write your mapper :
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.springframework.data.mybatis.repository.CustomerRepository">
+<mapper namespace="com.acme..CustomerRepository">
 	<resultMap id="customerResultMap" type="Customer">
 		<id property="id" column="id" />
 		<result property="firstName" column="first_name" />
 		<result property="lastName" column="last_name" />
 	</resultMap>
-	<select id="findOne" resultMap="customerResultMap" parameterType="int">
+	<select id="find" resultMap="customerResultMap">
 		SELECT customer.id id,
 		customer.first_name first_name,
 		customer.last_name last_name
-		FROM customer customer
-		WHERE customer.id = #{id}
-	</select>	
-	<select id="findAll" resultMap="customerResultMap">
-		SELECT customer.id id,
-		customer.first_name first_name,
-		customer.last_name last_name
-		FROM customer customer		
+		FROM
+		customer customer	
+		<if test="pk">
+			WHERE customer.id = #{pk.value}
+		</if>
 	</select>
 </mapper>
 ```
+
+The `select` statement id must be named "find".
+The parameter type of the `select` statement is a `map`.
+This map has a key `pk` whose value is the object identifying this domain object.
 
 Write a test client
 
@@ -140,6 +130,9 @@ public class UserRepositoryIntegrationTest {
   public void sampleTestCase() {         
 	Customer customer = customerRepository.findOne(new Integer(100));
 	assertNotNull(customer); 
+	List<Customer> customers = customerRepository.findAll();
+	assertNotNull(customers);
+	assertTrue(customers.size() > 0);
   }
 }
 ```

@@ -17,8 +17,7 @@
 		</collection>
 	</resultMap>
 
-
-	<select id="findOne" resultMap="customerResultMap" parameterType="int">
+	<select id="find" resultMap="customerResultMap">
 		SELECT customer.id id,
 		customer.first_name first_name,
 		customer.last_name last_name,
@@ -31,22 +30,9 @@
 		FROM
 		customer customer, address address
 		WHERE customer.id = address.customer_id
-		AND customer.id = #{id}
-	</select>
-	
-	<select id="findAll" resultMap="customerResultMap">
-		SELECT customer.id id,
-		customer.first_name first_name,
-		customer.last_name last_name,
-		customer.email_address email_adress,
-		address.id address_id,
-		address.street address_street,
-		address.city
-		address_city,
-		address.country address_country
-		FROM
-		customer customer, address address
-		WHERE customer.id = address.customer_id
+		<if test="pk">
+			AND customer.id = #{pk.value}
+		</if>
 	</select>
 	
 	<select id="findByFirstName" resultMap="customerResultMap" parameterType="string">
