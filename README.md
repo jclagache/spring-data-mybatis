@@ -3,7 +3,7 @@
 The primary goal of the [Spring Data](http://www.springsource.org/spring-data) project is to make it easier to build Spring-powered applications that use data access technologies. This module deals with enhanced support for [MyBatis](https://code.google.com/p/mybatis/) based data access layers.
 
 ## Features ##
-This project define a `MyBatisRepository` base interface  : 
+This project defines a `MyBatisRepository` base interface  : 
 
 ```java
 public interface MyBatisRepository<T, ID extends Serializable> extends Repository<T, ID> {	
@@ -94,7 +94,7 @@ Write your mapper :
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.acme..CustomerRepository">
+<mapper namespace="com.acme.CustomerRepository">
 	<resultMap id="customerResultMap" type="Customer">
 		<id property="id" column="id" />
 		<result property="firstName" column="first_name" />
@@ -115,7 +115,7 @@ Write your mapper :
 
 The `select` statement id must be named "find".
 The parameter type of the `select` statement is a `map`.
-This map has a key `pk` whose value is the object identifying this domain object.
+This `map` has a key `pk` whose value is the object identifying this domain object.
 
 Write a test client
 
