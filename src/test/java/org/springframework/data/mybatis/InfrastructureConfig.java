@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,16 +33,10 @@ public class InfrastructureConfig implements ResourceLoaderAware {
 	private ResourceLoader resourceLoader;
 
 	@Bean
-	public DataSource dataSource() {
-		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		return builder.setType(EmbeddedDatabaseType.HSQL)
-				.addDefaultScripts().build();
-	}
-
-	@Bean
-	public SqlSessionFactory sqlSessionFactory() throws Exception {
+	@Autowired
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource());
+		sessionFactory.setDataSource(dataSource);
 		sessionFactory
 				.setTypeAliasesPackage("org.springframework.data.mybatis.domain");
 		sessionFactory
@@ -50,15 +45,17 @@ public class InfrastructureConfig implements ResourceLoaderAware {
 	}
 
 	@Bean
-	PlatformTransactionManager transactionManager() throws Exception {
-		return new DataSourceTransactionManager(dataSource());
+	@Autowired
+	PlatformTransactionManager transactionManager(DataSource dataSource) throws Exception {
+		return new DataSourceTransactionManager(dataSource);
 	}
 
 	@Bean
-	SqlSessionTemplate sqlSessionTemplate() throws Exception {
-		return new SqlSessionTemplate(sqlSessionFactory());
+	@Autowired
+	SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
+		return new SqlSessionTemplate(sqlSessionFactory);
 	}
-	
+
 	@Bean
 	MapperScannerConfigurer mapperScannerConfigurer() {
 		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
