@@ -23,7 +23,7 @@ The only goal for now of this module is to make your MyBatis mappers created by 
 Build and deploy it into your local maven repository :
 
 ```bash
-git clone https://github.com/jclagache/spring-data-mybatis.git
+git clone https://github.com/interair/spring-data-mybatis.git
 cd spring-data-mybatis
 mvn install
 ```
@@ -47,23 +47,27 @@ Configure your infrastructure :
 public class ApplicationConfig {
 
 	@Bean
-	public DataSource dataSource() {
-		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.HSQL).addDefaultScripts().build();
-		return db;
-	}	
-
-	@Bean
-	public SqlSessionFactory sqlSessionFactory() throws Exception {
+	@Autowired
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setTypeAliasesPackage("com.acme.domain");
+		sessionFactory.setDataSource(dataSource);
+		sessionFactory
+				.setTypeAliasesPackage("org.springframework.data.mybatis.domain");
+		sessionFactory
+				.setMapperLocations(getResources("classpath*:mapper/**/*.xml"));
 		return sessionFactory.getObject();
 	}
 
 	@Bean
-	SqlSessionTemplate sqlSessionTemplate() throws Exception {
-		return new SqlSessionTemplate(sqlSessionFactory());
+	@Autowired
+	PlatformTransactionManager transactionManager(DataSource dataSource) throws Exception {
+		return new DataSourceTransactionManager(dataSource);
+	}
+
+	@Bean
+	@Autowired
+	SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
+		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 }
 ```
