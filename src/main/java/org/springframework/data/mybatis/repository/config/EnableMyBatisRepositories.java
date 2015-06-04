@@ -1,16 +1,11 @@
 package org.springframework.data.mybatis.repository.config;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.mybatis.repository.support.MyBatisRepositoryFactoryBean;
 import org.springframework.data.repository.query.QueryLookupStrategy.Key;
+
+import java.lang.annotation.*;
 
 /**
  * Annotation to enable MyBatis repositories. Will scan the package of the
@@ -22,7 +17,7 @@ import org.springframework.data.repository.query.QueryLookupStrategy.Key;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import(MyBatisRepositoriesRegistrar.class)
+@Import({MyBatisRepositoriesRegistrar.class, InfrastructureConfig.class})
 public @interface EnableMyBatisRepositories {
 	/**
 	 * Alias for the {@link #basePackages()} attribute. Allows for more concise

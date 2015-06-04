@@ -9,8 +9,7 @@ import org.springframework.data.repository.config.XmlRepositoryConfigurationSour
 import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
-public class MyBatisRepositoryConfigExtension extends
-		RepositoryConfigurationExtensionSupport {
+public class MyBatisRepositoryConfigExtension extends RepositoryConfigurationExtensionSupport {
 
 	@Override
 	public String getRepositoryFactoryClassName() {
@@ -21,7 +20,7 @@ public class MyBatisRepositoryConfigExtension extends
 	protected String getModulePrefix() {
 		return "mybatis";
 	}
-	
+
 	@Override
 	public void postProcess(BeanDefinitionBuilder builder, XmlRepositoryConfigurationSource config) {
 
@@ -31,7 +30,7 @@ public class MyBatisRepositoryConfigExtension extends
 				element.getAttribute("sql-session-template-ref"), config.getSource());
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport#postProcess(org.springframework.beans.factory.support.BeanDefinitionBuilder, org.springframework.data.repository.config.AnnotationRepositoryConfigurationSource)
 	 */
@@ -43,7 +42,7 @@ public class MyBatisRepositoryConfigExtension extends
 		postProcess(builder, attributes.getString("transactionManagerRef"),
 				attributes.getString("sqlSessionTemplateRef"), config.getSource());
 	}
-	
+
 	private void postProcess(BeanDefinitionBuilder builder, String transactionManagerRef, String sqlSessionTemplateRef,
 			Object source) {
 
@@ -56,7 +55,7 @@ public class MyBatisRepositoryConfigExtension extends
 			builder.addPropertyReference("sqlSessionTemplate","sqlSessionTemplate");
 		}
 	}
-	
-	
+
+
 
 }

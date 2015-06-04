@@ -1,8 +1,4 @@
-package org.springframework.data.mybatis;
-
-import java.io.IOException;
-
-import javax.sql.DataSource;
+package org.springframework.data.mybatis.repository.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -19,11 +15,11 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.data.mybatis.repository.MyBatisRepository;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.sql.DataSource;
+import java.io.IOException;
 
 @Configuration
 @EnableTransactionManagement
@@ -37,10 +33,8 @@ public class InfrastructureConfig implements ResourceLoaderAware {
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
-		sessionFactory
-				.setTypeAliasesPackage("org.springframework.data.mybatis.domain");
-		sessionFactory
-				.setMapperLocations(getResources("classpath*:mapper/**/*.xml"));
+		sessionFactory.setTypeAliasesPackage("org.springframework.data.mybatis.domain");
+		sessionFactory.setMapperLocations(getResources("classpath*:mapper/**/*.xml"));
 		return sessionFactory.getObject();
 	}
 

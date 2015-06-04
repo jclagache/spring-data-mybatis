@@ -22,14 +22,11 @@ public class AbstractEntity {
 		if (this == obj) {
 			return true;
 		}
-
 		if (this.id == null || obj == null
 				|| !(this.getClass().equals(obj.getClass()))) {
 			return false;
 		}
-
 		AbstractEntity that = (AbstractEntity) obj;
-
 		return this.id.equals(that.getId());
 	}
 

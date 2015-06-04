@@ -1,8 +1,8 @@
 package org.springframework.data.mybatis.domain;
 
-import java.util.regex.Pattern;
-
 import org.springframework.util.Assert;
+
+import java.util.regex.Pattern;
 
 public class EmailAddress {
 	private static final String EMAIL_REGEX = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -26,9 +26,7 @@ public class EmailAddress {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-
 		EmailAddress that = (EmailAddress) o;
-
 		return !(value != null ? !value.equals(that.value) : that.value != null);
 
 	}

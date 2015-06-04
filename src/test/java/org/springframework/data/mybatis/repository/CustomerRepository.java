@@ -1,12 +1,11 @@
 package org.springframework.data.mybatis.repository;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Select;
 import org.springframework.data.mybatis.domain.Customer;
 
-public interface CustomerRepository extends
-		MyBatisRepository<Customer, Integer> {
+import java.util.List;
+
+public interface CustomerRepository extends MyBatisRepository<Customer, Integer> {
 
 	List<Customer> findByFirstName(String firstName);
 
