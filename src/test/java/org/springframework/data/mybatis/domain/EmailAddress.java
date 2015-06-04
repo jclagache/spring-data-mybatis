@@ -19,7 +19,7 @@ public class EmailAddress {
 	}
 
 	public static boolean isValid(String candidate) {
-		return candidate == null ? false : PATTERN.matcher(candidate).matches();
+		return candidate != null && PATTERN.matcher(candidate).matches();
 	}
 
 	@Override
@@ -29,9 +29,8 @@ public class EmailAddress {
 
 		EmailAddress that = (EmailAddress) o;
 
-		if (value != null ? !value.equals(that.value) : that.value != null) return false;
+		return !(value != null ? !value.equals(that.value) : that.value != null);
 
-		return true;
 	}
 
 	@Override

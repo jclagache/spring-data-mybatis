@@ -34,9 +34,8 @@ public class InfrastructureConfig implements ResourceLoaderAware {
 	@Bean
 	public DataSource dataSource() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.HSQL)
+		return builder.setType(EmbeddedDatabaseType.HSQL)
 				.addDefaultScripts().build();
-		return db;
 	}
 
 	@Bean
@@ -76,8 +75,7 @@ public class InfrastructureConfig implements ResourceLoaderAware {
 	private Resource[] getResources(String packagePath) throws IOException {
 		ResourcePatternResolver resourceResolver = ResourcePatternUtils
 				.getResourcePatternResolver(resourceLoader);
-		Resource[] resources = resourceResolver.getResources(packagePath);
-		return resources;
+		return resourceResolver.getResources(packagePath);
 	}
 
 }

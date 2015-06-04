@@ -11,8 +11,8 @@ import org.springframework.util.Assert;
 
 public class SimpleMyBatisRepository<T, ID extends Serializable> implements MyBatisRepository<T, ID> {
 	
-	private SqlSessionTemplate sessionTemplate;
-	private String mappedStatementId;
+	private final SqlSessionTemplate sessionTemplate;
+	private final String mappedStatementId;
 	
 	public SimpleMyBatisRepository(SqlSessionTemplate sessionTemplate, String mappedStatementNamespace) {
 		Assert.notNull(sessionTemplate, "SqlSessionTemplate must not be null!");
@@ -23,20 +23,20 @@ public class SimpleMyBatisRepository<T, ID extends Serializable> implements MyBa
 	
 	@Override
 	public T findOne(ID id) {
-		Map<String, ID> params = new HashMap<String, ID>();
+		Map<String, ID> params = new HashMap<>();
 		params.put("pk", id);
 		return sessionTemplate.selectOne(mappedStatementId, params);
 	}
 
 	@Override
 	public List<T> findAll() {
-		Map<String, ID> params = new HashMap<String, ID>();
+		Map<String, ID> params = new HashMap<>();
 		return sessionTemplate.selectList(mappedStatementId, params);
 	}
 
 	@Override
 	public boolean exists(ID id) {
-		return findOne(id) == null ? false : true;
+		return findOne(id) != null;
 	}
 
 	@Override

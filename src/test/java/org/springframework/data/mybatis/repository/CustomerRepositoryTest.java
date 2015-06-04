@@ -22,7 +22,7 @@ public class CustomerRepositoryTest {
 	
 	@Test
 	public void testFindOneCustomer() {		
-		Customer customer = customerRepository.findOne(new Integer(100));
+		Customer customer = customerRepository.findOne(100);
 		assertNotNull(customer);
 	}
 	

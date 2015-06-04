@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
 
 public class MyBatisRepositoryFactory extends RepositoryFactorySupport {
 	
-	private SqlSessionTemplate sessionTemplate;	
+	private final SqlSessionTemplate sessionTemplate;
 	
 	public MyBatisRepositoryFactory(SqlSessionTemplate sessionTemplate) {
 		super();

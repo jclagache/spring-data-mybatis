@@ -8,7 +8,7 @@ import org.springframework.util.Assert;
 
 public class MyBatisQueryMethod extends QueryMethod {
 	
-	private Class<?> mapperInterface;
+	private final Class<?> mapperInterface;
 	private final Method method;
 
 	public MyBatisQueryMethod(Method method, RepositoryMetadata metadata) {
@@ -32,6 +32,6 @@ public class MyBatisQueryMethod extends QueryMethod {
 	}
 	
 	public String getNamedQueryName() {
-		return getNamedQueryName();
+		return null;
 	}
 }
