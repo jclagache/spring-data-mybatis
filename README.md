@@ -124,7 +124,7 @@ public class UserRepositoryIntegrationTest {
      
   @Test
   public void sampleTestCase() {         
-	Customer customer = customerRepository.findOne(new Integer(100));
+	Customer customer = customerRepository.findOne(100);
 	assertNotNull(customer); 
 	List<Customer> customers = customerRepository.findAll();
 	assertNotNull(customers);
