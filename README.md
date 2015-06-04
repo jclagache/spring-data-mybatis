@@ -38,8 +38,8 @@ Add the jar to your maven project :
 </dependency>
 ```
 
-Configure your infrastructure : 
-
+Configure your infrastructure: 
+ 1. add @EnableMyBatisRepositories annotation:
 ```java
 @Configuration
 @EnableMyBatisRepositories
@@ -48,17 +48,29 @@ public class ApplicationConfig {
 
 }
 ```
+ 2. Configure datasource:
+ 
+```properties
+
+spring.datasource.url=jdbc:mysql://mysql:3306/opentsp_user
+spring.datasource.username=admin
+spring.datasource.password=opentsp
+spring.datasource.test-on-borrow=true
+spring.datasource.test-while-idle=true
+spring.datasource.validation-query=SELECT 1;
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+
+```
 
 Create an entity:
 
 ```java
 public class User {
 
-  private Integer id;
-  private String firstname;
-  private String lastname;
-       
-  // Getters and setters
+	private Integer id;
+	private String firstname;
+	private String lastname;
+	// Getters and setters
 }
 ```
 
