@@ -43,32 +43,9 @@ Configure your infrastructure :
 ```java
 @Configuration
 @EnableMyBatisRepositories
-@MapperScan("com.acme.repository")
+@EnableAutoConfiguration
 public class ApplicationConfig {
 
-	@Bean
-	@Autowired
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource);
-		sessionFactory
-				.setTypeAliasesPackage("org.springframework.data.mybatis.domain");
-		sessionFactory
-				.setMapperLocations(getResources("classpath*:mapper/**/*.xml"));
-		return sessionFactory.getObject();
-	}
-
-	@Bean
-	@Autowired
-	PlatformTransactionManager transactionManager(DataSource dataSource) throws Exception {
-		return new DataSourceTransactionManager(dataSource);
-	}
-
-	@Bean
-	@Autowired
-	SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
-		return new SqlSessionTemplate(sqlSessionFactory);
-	}
 }
 ```
 
