@@ -60,6 +60,9 @@ spring.datasource.test-while-idle=true
 spring.datasource.validation-query=SELECT 1;
 spring.datasource.driverClassName=com.mysql.jdbc.Driver
 
+#package for scanning mappers
+mybatis.mapper.base.package=org.springframework.data.mybatis.repository
+
 ```
 
 Create an entity:
@@ -74,7 +77,7 @@ public class User {
 }
 ```
 
-Create a repository interface in `com.acme.repository`:
+Create a repository interface:
 
 ```java
 public interface CustomerRepository extends MyBatisRepository<Customer, Integer> {
