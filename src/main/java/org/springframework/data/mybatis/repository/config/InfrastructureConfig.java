@@ -35,7 +35,7 @@ public class InfrastructureConfig {
 
 	@Bean
 	@Autowired
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ResourceLoader resourceLoader, @Value("${mybatis.aliases.package}") String aliases) throws Exception {
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ResourceLoader resourceLoader, @Value("${mybatis.aliases.package:}") String aliases) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
 		sessionFactory.setTypeAliasesPackage(aliases);
