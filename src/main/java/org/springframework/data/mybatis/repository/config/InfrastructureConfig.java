@@ -25,7 +25,7 @@ import java.io.IOException;
 public class InfrastructureConfig {
 
 	@Bean
-	public MapperScannerConfigurer mapperScannerConfigurer(@Value("${mybatis.mapper.base.package}") String basePackage) {
+	public MapperScannerConfigurer mapperScannerConfigurer(@Value("${mybatis.mapper.base.package:*}") String basePackage) {
 		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
 		mapperScannerConfigurer.setMarkerInterface(MyBatisRepository.class);
 		mapperScannerConfigurer.setSqlSessionTemplateBeanName("sqlSessionTemplate");
