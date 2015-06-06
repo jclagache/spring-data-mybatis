@@ -11,32 +11,17 @@ public class AbstractEntity {
 		this.id = id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		AbstractEntity that = (AbstractEntity) o;
+		return !(id != null ? !id.equals(that.id) : that.id != null);
 
-		if (this == obj) {
-			return true;
-		}
-		if (this.id == null || obj == null
-				|| !(this.getClass().equals(obj.getClass()))) {
-			return false;
-		}
-		AbstractEntity that = (AbstractEntity) obj;
-		return this.id.equals(that.getId());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
-		return id == null ? 0 : id.hashCode();
+		return id != null ? id.hashCode() : 0;
 	}
 }

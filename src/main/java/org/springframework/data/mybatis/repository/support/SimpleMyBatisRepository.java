@@ -1,14 +1,19 @@
 package org.springframework.data.mybatis.repository.support;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.data.mybatis.repository.MyBatisRepository;
+import org.springframework.util.Assert;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.data.mybatis.repository.MyBatisRepository;
-import org.springframework.util.Assert;
-
+/**
+ *
+ * Specifies Default binding for findOne, findAll, exists, count methods
+ * between org.springframework.data.mybatis.repository.MyBatisRepository and mybatis mapper
+ */
 public class SimpleMyBatisRepository<T, ID extends Serializable> implements MyBatisRepository<T, ID> {
 	
 	private final SqlSessionTemplate sessionTemplate;

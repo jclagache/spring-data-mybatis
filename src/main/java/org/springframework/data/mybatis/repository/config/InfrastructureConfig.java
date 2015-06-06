@@ -20,6 +20,16 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.io.IOException;
 
+/**
+ *
+ *Configuration of Mybats:
+ *
+ * SqlSessionFactory see: https://mybatis.github.io/mybatis-3/getting-started.html
+ * MapperScannerConfigurer see: https://mybatis.github.io/spring/mappers.html#scan
+ * SqlSessionTemplate see https://mybatis.github.io/spring/sqlsession.html
+ * Spring TransactionManager
+ *
+ */
 @Configuration
 @EnableTransactionManagement
 public class InfrastructureConfig {
@@ -45,16 +55,23 @@ public class InfrastructureConfig {
 
 	@Bean
 	@Autowired
-	PlatformTransactionManager transactionManager(DataSource dataSource) throws Exception {
-		return new DataSourceTransactionManager(dataSource);
-	}
-
-	@Bean
-	@Autowired
 	SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 
+	@Bean
+	@Autowired
+	PlatformTransactionManager transactionManager(DataSource dataSource) throws Exception {
+		return new DataSourceTransactionManager(dataSource);
+	}
+
+	/**
+	 * Method which loads resources by packagePath
+	 * @param resourceLoader
+	 * @param packagePath
+	 * @return
+	 * @throws IOException
+	 */
 	private Resource[] getResources(ResourceLoader resourceLoader, String packagePath) throws IOException {
 		ResourcePatternResolver resourceResolver = ResourcePatternUtils
 				.getResourcePatternResolver(resourceLoader);

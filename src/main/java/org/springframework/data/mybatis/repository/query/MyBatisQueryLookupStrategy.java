@@ -1,7 +1,5 @@
 package org.springframework.data.mybatis.repository.query;
 
-import java.lang.reflect.Method;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.data.repository.core.NamedQueries;
 import org.springframework.data.repository.core.RepositoryMetadata;
@@ -9,6 +7,12 @@ import org.springframework.data.repository.query.QueryLookupStrategy;
 import org.springframework.data.repository.query.QueryLookupStrategy.Key;
 import org.springframework.data.repository.query.RepositoryQuery;
 
+import java.lang.reflect.Method;
+
+/**
+ *
+ * TODO: add support @Query annotation
+ */
 public class MyBatisQueryLookupStrategy {
 
 	/**
@@ -17,12 +21,7 @@ public class MyBatisQueryLookupStrategy {
 	private MyBatisQueryLookupStrategy() {
 	}
 	
-	/**
-	 * {@link QueryLookupStrategy} that tries to detect a declared query declared via {@link Query} annotation followed by
-	 * a JPA named query lookup.
-	 * 
-	 * @author Oliver Gierke
-	 */
+
 	private static class DeclaredQueryLookupStrategy implements QueryLookupStrategy {
 		
 		private final SqlSessionTemplate sessionTemplate;
@@ -40,7 +39,6 @@ public class MyBatisQueryLookupStrategy {
 			return new MyBatisQuery(method, sessionTemplate);			
 		}
 	}
-	
 	
 	/**
 	 * Creates a {@link QueryLookupStrategy} for the given {@link SqlSessionTemplate} and {@link Key}.

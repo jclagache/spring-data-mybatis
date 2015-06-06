@@ -6,6 +6,9 @@ import org.springframework.data.repository.query.RepositoryQuery;
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
+/**
+ * Binds spring Repository methods with mybatis mapper
+ */
 public class MyBatisQuery implements RepositoryQuery {
 	
 	private final MyBatisQueryMethod queryMethod;

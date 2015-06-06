@@ -9,6 +9,12 @@ import org.springframework.data.repository.config.XmlRepositoryConfigurationSour
 import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
+
+/**
+ * Implementation of {@link org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport} for supporting mybatis
+ * allows to use read EnableMyBatisRepositories annotation for configuring repository bean
+ *
+ */
 public class MyBatisRepositoryConfigExtension extends RepositoryConfigurationExtensionSupport {
 
 	@Override

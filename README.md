@@ -135,6 +135,10 @@ public class UserRepositoryIntegrationTest {
 }
 ```
 
+Transaction management
+
+see: http://docs.spring.io/spring/docs/current/spring-framework-reference/html/transaction.html#transaction-declarative-attransactional-settings  
+
 See the test classes for more.
 
 
