@@ -40,6 +40,13 @@
 		<mockito-core.version>1.10.19</mockito-core.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<cglib.version>3.1</cglib.version>
+
+		<hsqldb.version>2.3.2</hsqldb.version>
+
+		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+		<maven-source-plugin.version>2.4</maven-source-plugin.version>
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+		<maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
 	</properties>  
   
     <dependencies>
@@ -180,7 +187,7 @@
 		<dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<version>2.3.2</version>
+			<version>${hsqldb.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -215,13 +222,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.7</version>
+				<version>${maven-dependency-plugin.version}</version>
 			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<source>${source.level}</source>
 					<target>${source.level}</target>
@@ -230,7 +237,7 @@
 			
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.1.2</version>
+				<version>${maven-source-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -244,19 +251,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.7</version>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
+				<version>${maven-deploy-plugin.version}</version>
 			</plugin>
 
 		</plugins>
 	</build>
-	
-	<repositories>
-		<repository>
-			<id>spring-libs-snapshot</id>
-			<url>http://repo.springsource.org/libs-snapshot-local</url>
-		</repository>
-	</repositories>	
 </project>
