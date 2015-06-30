@@ -23,7 +23,7 @@ The only goal for now of this module is to make your MyBatis mappers created by 
 Build and deploy it into your local maven repository :
 
 ```bash
-git clone https://github.com/interair/spring-data-mybatis.git
+git clone https://github.com/jclagache/spring-data-mybatis.git
 cd spring-data-mybatis
 mvn install
 ```
