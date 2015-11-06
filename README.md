@@ -32,7 +32,7 @@ Add the jar to your maven project :
 
 ```xml
 <dependency>
-  <groupId>org.springframework.data</groupId>
+  <groupId>me.jclagache</groupId>
   <artifactId>spring-data-mybatis</artifactId>
   <version>0.1-SNAPSHOT</version>
 </dependency>
@@ -61,9 +61,9 @@ spring.datasource.validation-query=SELECT 1;
 spring.datasource.driverClassName=com.mysql.jdbc.Driver
 
 #package for scanning mappers see https://mybatis.github.io/spring/mappers.html#scan default value *
-mybatis.mapper.base.package=org.springframework.data.mybatis.repository
+mybatis.mapper.base.package=me.jclagache.data.mybatis.repository
 #package mybatis aliases see https://mybatis.github.io/mybatis-3/configuration.html#typeAliases default value ""
-mybatis.aliases.package=org.springframework.data.mybatis.domain
+mybatis.aliases.package=me.jclagache.data.mybatis.domain
 
 ```
 
