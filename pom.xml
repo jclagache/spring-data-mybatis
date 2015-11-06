@@ -1,28 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.springframework.data</groupId>
+	<groupId>me.jclagache.data</groupId>
 	<artifactId>spring-data-mybatis</artifactId>
 	<packaging>jar</packaging>
 	<version>0.1-SNAPSHOT</version>
 	<name>spring-data-mybatis</name>
-
+	<url>https://github.com/jclagache/spring-data-mybatis</url>
 
 	<scm>
-		<connection>scm:git:git@bitbucket.org:codeabovelab/spring-boot-starter-mybatis.git</connection>
-		<tag>spring-boot-starter-mybatis</tag>
+		<url>https://github.com/jclagache/spring-data-mybatis</url>
+		<connection>scm:git:git@github.com:jclagache/spring-data-mybatis.git</connection>
+		<developerConnection>scm:git:git@github.com:jclagache/spring-data-mybatis.git</developerConnection>
 	</scm>
-
-	<distributionManagement>
-		<repository>
-			<id>navinfo-release</id>
-			<url>http://ni2.codeabovelab.com:8081/nexus/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>navinfo-snapshot</id>
-			<url>http://ni2.codeabovelab.com:8081/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 
 	<properties>
@@ -31,7 +21,7 @@
 		<mybatis-spring.version>1.2.2</mybatis-spring.version>
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<spring-boot.version>1.2.1.RELEASE</spring-boot.version>
-		<spring-data-commons.version>1.10.0.RELEASE</spring-data-commons.version>
+        <spring-data-commons.version>1.10.0.RELEASE</spring-data-commons.version>
 		<aspectj>1.8.5</aspectj>
 		<hamcrest>1.3</hamcrest>
 		<joda-time.version>2.8</joda-time.version>
@@ -51,7 +41,7 @@
   
     <dependencies>
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-commons</artifactId>
 			<version>${spring-data-commons.version}</version>
 		</dependency>        
@@ -95,7 +85,7 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
 			<version>${spring-boot.version}</version>
 		</dependency>
 

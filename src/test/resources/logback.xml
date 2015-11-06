@@ -8,7 +8,7 @@
     </encoder>
   </appender>
 
-  <logger name="org.springframework.data.mybatis" level="DEBUG"/>
+  <logger name="me.jclagache.data.mybatis" level="DEBUG"/>
   
    <logger name="org.apache.ibatis" level="DEBUG"/>
    <logger name="org.mybatis.spring" level="DEBUG"/>
