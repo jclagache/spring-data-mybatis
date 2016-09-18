@@ -19,9 +19,9 @@
 		<source.level>1.7</source.level>
 		<mybatis.version>3.3.0</mybatis.version>
 		<mybatis-spring.version>1.2.2</mybatis-spring.version>
-		<spring.version>4.1.6.RELEASE</spring.version>
-		<spring-boot.version>1.2.1.RELEASE</spring-boot.version>
-        <spring-data-commons.version>1.10.0.RELEASE</spring-data-commons.version>
+		<spring.version>4.1.7.RELEASE</spring.version>
+		<spring-boot.version>1.2.6.RELEASE</spring-boot.version>
+        <spring-data-commons.version>1.11.0.RELEASE</spring-data-commons.version>
 		<aspectj>1.8.5</aspectj>
 		<hamcrest>1.3</hamcrest>
 		<joda-time.version>2.8</joda-time.version>
@@ -131,7 +131,6 @@
 			<version>${joda-time.version}</version>
 			<optional>true</optional>
 		</dependency>
-		
 		
 		 <dependency>
 			<groupId>org.mybatis</groupId>

@@ -36,7 +36,7 @@ public class MyBatisQueryLookupStrategy {
 		}
 				
 		protected RepositoryQuery resolveQuery(MyBatisQueryMethod method, SqlSessionTemplate sessionTemplate, NamedQueries namedQueries) {
-			return new MyBatisQuery(method, sessionTemplate);			
+			return new MyBatisQuery(method, sessionTemplate);
 		}
 	}
 	
