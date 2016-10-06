@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import me.jclagache.data.mybatis.repository.MyBatisRepository;
 import me.jclagache.data.mybatis.repository.query.MyBatisQueryLookupStrategy;
 import org.springframework.data.repository.core.EntityInformation;
+import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
 import org.springframework.data.repository.query.EvaluationContextProvider;
@@ -31,14 +32,13 @@ public class MyBatisRepositoryFactory extends RepositoryFactorySupport {
 	}
 
 	@Override
-	protected Class<?> getRepositoryBaseClass(RepositoryMetadata repositoryMetadata) {
-		return MyBatisRepository.class;
+	protected Object getTargetRepository(RepositoryInformation repositoryInformation) {
+		return new SimpleMyBatisRepository(sessionTemplate, repositoryInformation.getRepositoryInterface().getCanonicalName());
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
-	protected Object getTargetRepository(RepositoryMetadata repositoryMetadata) {	
-		return new SimpleMyBatisRepository(sessionTemplate, repositoryMetadata.getRepositoryInterface().getCanonicalName());
+	protected Class<?> getRepositoryBaseClass(RepositoryMetadata repositoryMetadata) {
+		return MyBatisRepository.class;
 	}
 
 
