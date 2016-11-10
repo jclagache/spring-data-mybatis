@@ -1,6 +1,7 @@
 package me.jclagache.data.mybatis.repository.query;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.data.projection.ProjectionFactory;
 import org.springframework.data.repository.core.NamedQueries;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.data.repository.query.QueryLookupStrategy;
@@ -31,8 +32,9 @@ public class MyBatisQueryLookupStrategy {
 		}
 
 		@Override
-		public RepositoryQuery resolveQuery(Method method, RepositoryMetadata metadata, NamedQueries namedQueries) {
-			return resolveQuery(new MyBatisQueryMethod(method, metadata), sessionTemplate, namedQueries);
+		public RepositoryQuery resolveQuery(Method method, RepositoryMetadata metadata, ProjectionFactory factory,
+															NamedQueries namedQueries) {
+			return resolveQuery(new MyBatisQueryMethod(method, metadata, factory), sessionTemplate, namedQueries);
 		}
 				
 		protected RepositoryQuery resolveQuery(MyBatisQueryMethod method, SqlSessionTemplate sessionTemplate, NamedQueries namedQueries) {

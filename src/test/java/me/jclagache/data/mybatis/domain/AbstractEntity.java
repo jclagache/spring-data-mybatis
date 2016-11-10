@@ -1,6 +1,9 @@
 package me.jclagache.data.mybatis.domain;
 
+import org.springframework.data.annotation.Id;
+
 public class AbstractEntity {
+	@Id
 	private Integer id;
 
 	public Integer getId() {

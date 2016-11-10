@@ -1,12 +1,12 @@
 package me.jclagache.data.mybatis.repository;
 
+import me.jclagache.data.mybatis.ApplicationConfig;
+import me.jclagache.data.mybatis.domain.Customer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import me.jclagache.data.mybatis.ApplicationConfig;
-import me.jclagache.data.mybatis.domain.Customer;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -14,8 +14,8 @@ import java.util.List;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-@SpringApplicationConfiguration(classes = ApplicationConfig.class)
-@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = ApplicationConfig.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@RunWith(SpringRunner.class)
 @Transactional
 public class CustomerRepositoryTest {
 
