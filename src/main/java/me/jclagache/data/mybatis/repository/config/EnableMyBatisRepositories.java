@@ -4,6 +4,7 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Import;
 import me.jclagache.data.mybatis.repository.support.MyBatisRepositoryFactoryBean;
 import org.springframework.data.repository.query.QueryLookupStrategy.Key;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import java.lang.annotation.*;
 
