@@ -4,6 +4,7 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Import;
 import me.jclagache.data.mybatis.repository.support.MyBatisRepositoryFactoryBean;
 import org.springframework.data.repository.query.QueryLookupStrategy.Key;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import java.lang.annotation.*;
 
@@ -17,7 +18,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import({MyBatisRepositoriesRegistrar.class, InfrastructureConfig.class})
+@Import({MyBatisRepositoriesRegistrar.class, MyBatisAutoConfiguration.class})
 public @interface EnableMyBatisRepositories {
 	/**
 	 * Alias for the {@link #basePackages()} attribute. Allows for more concise
@@ -85,13 +86,15 @@ public @interface EnableMyBatisRepositories {
 
 	/**
 	 * Returns the {@link FactoryBean} class to be used for each repository
-	 * instance. Defaults to {@link JpaRepositoryFactoryBean}.
+	 * instance. Defaults to {@link MyBatisRepositoryFactoryBean}.
 	 * 
 	 * @return
 	 */
 	Class<?> repositoryFactoryBeanClass() default MyBatisRepositoryFactoryBean.class;
 
 	String sqlSessionTemplateRef() default "sqlSessionTemplate";
+
+	String mappingContextRef() default "myBatisMappingContext";
 
 	/**
 	 * /** Configures the name of the {@link PlatformTransactionManager} bean

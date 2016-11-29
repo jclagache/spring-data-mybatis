@@ -1,9 +1,11 @@
 package me.jclagache.data.mybatis.repository.support;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import me.jclagache.data.mybatis.repository.MyBatisRepository;
+import me.jclagache.data.mybatis.repository.core.mapping.MyBatisPersistentEntity;
+import me.jclagache.data.mybatis.repository.core.mapping.MyBatisPersistentProperty;
 import me.jclagache.data.mybatis.repository.query.MyBatisQueryLookupStrategy;
-import org.springframework.data.repository.core.EntityInformation;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.data.mapping.context.MappingContext;
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
@@ -17,18 +19,24 @@ import java.io.Serializable;
 public class MyBatisRepositoryFactory extends RepositoryFactorySupport {
 	
 	private final SqlSessionTemplate sessionTemplate;
+	private final MappingContext<? extends MyBatisPersistentEntity<?>,
+			MyBatisPersistentProperty> context;
 	
-	public MyBatisRepositoryFactory(SqlSessionTemplate sessionTemplate) {
+	public MyBatisRepositoryFactory(SqlSessionTemplate sessionTemplate, MappingContext<? extends MyBatisPersistentEntity<?>,
+                MyBatisPersistentProperty> context) {
 		super();
-		Assert.notNull(sessionTemplate, "SqlSessionTemplate must not be null!");		
-		this.sessionTemplate = sessionTemplate;			
+		Assert.notNull(sessionTemplate, "SqlSessionTemplate must not be null!");
+		Assert.notNull(context, "MappingContext must not be null!");
+		this.sessionTemplate = sessionTemplate;
+		this.context = context;
 	}
 
 	@Override
-	public <T, ID extends Serializable> EntityInformation<T, ID> getEntityInformation(
-			Class<T> arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	@SuppressWarnings("unchecked")
+	public <T, ID extends Serializable> MyBatisEntityInformation<T, ID> getEntityInformation(
+			Class<T> domainClass) {
+		MyBatisPersistentEntity<T> entity = (MyBatisPersistentEntity<T>) context.getPersistentEntity(domainClass);
+		return new MappingMyBatisEntityInformation<T,ID>(entity);
 	}
 
 	@Override

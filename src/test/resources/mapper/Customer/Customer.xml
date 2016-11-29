@@ -27,11 +27,9 @@
 		address.city
 		address_city,
 		address.country address_country
-		FROM
-		customer, address
-		WHERE customer.id = address.customer_id
+		FROM customer LEFT JOIN address ON customer.id = address.customer_id
 		<if test="pk">
-			AND customer.id = #{pk.value}
+			WHERE customer.id = #{pk.value}
 		</if>
 	</select>
 	
@@ -45,10 +43,8 @@
 		address.city
 		address_city,
 		address.country address_country
-		FROM
-		customer, address
-		WHERE customer.id = address.customer_id
-		AND customer.first_name = #{firstName}
+		FROM customer LEFT JOIN address ON customer.id = address.customer_id
+		WHERE customer.first_name = #{firstName}
 	</select>
 
 </mapper>

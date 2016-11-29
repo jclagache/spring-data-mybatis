@@ -22,7 +22,7 @@ import java.io.IOException;
 
 /**
  *
- *Configuration of Mybats:
+ *Configuration of MyBats:
  *
  * SqlSessionFactory see: https://mybatis.github.io/mybatis-3/getting-started.html
  * MapperScannerConfigurer see: https://mybatis.github.io/spring/mappers.html#scan
@@ -30,12 +30,13 @@ import java.io.IOException;
  * Spring TransactionManager
  *
  */
+
 @Configuration
 @EnableTransactionManagement
-public class InfrastructureConfig {
+public class MyBatisAutoConfiguration {
 
 	@Bean
-	public MapperScannerConfigurer mapperScannerConfigurer(@Value("${mybatis.mapper.base.package:*}") String basePackage) {
+	public static MapperScannerConfigurer mapperScannerConfigurer(@Value("${mybatis.mapper.base.package:*}") String basePackage) {
 		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
 		mapperScannerConfigurer.setMarkerInterface(MyBatisRepository.class);
 		mapperScannerConfigurer.setSqlSessionTemplateBeanName("sqlSessionTemplate");

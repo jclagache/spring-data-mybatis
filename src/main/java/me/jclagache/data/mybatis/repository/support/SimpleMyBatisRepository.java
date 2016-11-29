@@ -25,7 +25,7 @@ public class SimpleMyBatisRepository<T, ID extends Serializable> implements MyBa
 		this.sessionTemplate = sessionTemplate;
 		this.mappedStatementId = mappedStatementNamespace + ".find";
 	}
-	
+
 	@Override
 	public T findOne(ID id) {
 		Map<String, ID> params = new HashMap<>();
@@ -48,7 +48,7 @@ public class SimpleMyBatisRepository<T, ID extends Serializable> implements MyBa
 	public long count() {
 		return findAll().size();
 	}
-	
-	
+
+
 
 }
