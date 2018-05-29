@@ -1,3 +1,8 @@
+<aside class="notice">
+	NOT MAINTAINED ANYMORE
+</aside>
+
+
 # Spring Data MyBatis #
 
 The primary goal of the [Spring Data](http://www.springsource.org/spring-data) project is to make it easier to build Spring-powered applications that use data access technologies. This module deals with enhanced support for [MyBatis](https://code.google.com/p/mybatis/) based data access layers.
