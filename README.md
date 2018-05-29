@@ -1,7 +1,5 @@
-<aside class="notice">
-	NOT MAINTAINED ANYMORE
-</aside>
 
+> NOT MAINTAINED ANYMORE
 
 # Spring Data MyBatis #
 
