@@ -1,5 +1,5 @@
 
-> NOT MAINTAINED ANYMORE
+> :warning: NOT MAINTAINED ANYMORE :warning:
 
 # Spring Data MyBatis #
 
